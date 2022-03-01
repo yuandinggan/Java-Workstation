@@ -1,0 +1,18 @@
+package test;
+
+import javax.swing.JFrame;
+
+public class Test {
+
+	public static void main(String[] args) {
+		JFrame jFrame=new JFrame();
+		jFrame.setSize(400,500);
+		jFrame.setLocationRelativeTo(null);
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		jFrame.setVisible(true);
+
+	}
+
+}

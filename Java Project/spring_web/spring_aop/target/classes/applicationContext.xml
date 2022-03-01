@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <!--目标对象-->
+        <bean id="myTarget" class="cn.reaper.aop.MyTarget"/>
+
+        <!--切面对象 -->
+        <bean id="myAspect" class="cn.reaper.aop.MyAspect"/>
+
+        <!-- 配置织入 告诉spring 哪些方法（切点）需要哪些增强-->
+        <aop:config>
+            <!--声明切面-->
+            <aop:aspect ref="myAspect">
+                <!--切点(pointcut)+通知-->
+<!--                <aop:before method="before" pointcut="execution(* cn.reaper.aop.*.*(..))"/>-->
+<!--                <aop:after-returning method="afterRun" pointcut="execution(* cn.reaper.aop.*.*(..))"/>-->
+                <aop:around method="around" pointcut="execution(* cn.reaper.aop.*.*(..))"/>
+                <aop:after-throwing method="afterThrowing" pointcut="execution(* cn.reaper.aop.*.*(..))"/>
+                <aop:after method="after" pointcut="execution(* cn.reaper.aop.*.*(..))"/>
+            </aop:aspect>
+        </aop:config>
+</beans>

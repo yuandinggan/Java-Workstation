@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="userDao" class="cn.reaper.dao.impl.UserDaoImpl" init-method="init" destroy-method="destory"></bean>-->
+    <!--静态工厂创建Bean-->
+    <!--<bean id="userDao" class="cn.reaper.factory.StaticFactory" factory-method="getUserDao" ></bean>-->
+
+    <!--工厂实例创建Bean-->
+    <!--<bean id="factory" class="cn.reaper.factory.DynamicFactory"></bean>-->
+    <!--<bean id="userDao" factory-bean="factory" factory-method="getUserDao"></bean>-->
+
+    <!--Sping的依赖注入-->
+    <!--<bean id="userDao" class="cn.reaper.dao.impl.UserDaoImpl"></bean>-->
+    <!--<bean id="userService" class="cn.reaper.service.impl.UserServiceImpl">-->
+    <!--&lt;!&ndash;name:是set方法后面的方法名称首字符小写  ref:要依赖的beanId&ndash;&gt;-->
+    <!--<property name="userDao" ref="userDao"></property>-->
+    <!--</bean>-->
+
+    <!--构造函数依赖注入-->
+    <!--name->userDao 构造参数名-->
+    <!--<bean id="userService" class="cn.reaper.service.impl.UserServiceImpl">-->
+    <!--<constructor-arg name="userDao" ref="userDao"></constructor-arg>-->
+    <!--</bean>-->
+
+
+    <!--p命名空间-->
+    <!--<bean id="userService" class="cn.reaper.service.impl.UserServiceImpl" p:userDao-ref="userDao">-->
+    <!--</bean>-->
+
+    <!--基本数据类型注入-->
+    <!--<bean id="userDao" class="cn.reaper.dao.impl.UserDaoImpl">-->
+    <!--<property name="username" value="张三"/>-->
+    <!--<property name="sex" value="2"/>-->
+    <!--</bean>-->
+    <bean id="user1" class="cn.reaper.entity.User">
+        <property name="id" value="001"></property>
+        <property name="age" value="15"></property>
+        <property name="name" value="tom"></property>
+    </bean>
+    <bean id="user2" class="cn.reaper.entity.User">
+        <property name="id" value="002"></property>
+        <property name="age" value="16"></property>
+        <property name="name" value="james"></property>
+    </bean>
+    <bean id="userDao" class="cn.reaper.dao.impl.UserDaoImpl">
+        <property name="strList">
+            <list>
+                <value>list01</value>
+                <value>list02</value>
+                <value>list03</value>
+            </list>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="mapKeyUser01" value-ref="user1"></entry>
+                <entry key="mapKeyUser02" value-ref="user2"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="p1">pp1</prop>
+                <prop key="p2">pp2</prop>
+                <prop key="p3">pp3</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <import resource="application.user.xml"/>
+</beans>
